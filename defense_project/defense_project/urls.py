@@ -19,6 +19,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include("django.contrib.auth.urls"), name='login'),
+    # path('login/', include("django.contrib.auth.urls"), name='login'),
     path('defense/', include('defense.urls')),
 ]
