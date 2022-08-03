@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-
+from .forms import ActivityForm
 # from .forms import UserCreation
   
 import logging
@@ -49,6 +49,17 @@ def register(request):
     else:  
         form = UserCreationForm()  
     return render(request, 'registration/register.html',{'form':form })  
+
+
+def activity(request):
+    context ={"form":ActivityForm()}
+    if request.method == 'GET':
+        return render(request, 'defense/activity.html', context)
+    else:
+        for key, value in request.POST.items():
+            if value == 'on':
+                logging.warn(key)
+        return render(request, 'defense/activity.html', context)
 
 
 # Create your views here.
