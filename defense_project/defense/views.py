@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import ActivityForm
+from .forms import ActivityForm, AddParticipantForm
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 # from .forms import UserCreation
   
 import logging
@@ -50,7 +52,7 @@ def register(request):
         form = UserCreationForm()  
     return render(request, 'registration/register.html',{'form':form })  
 
-
+# @login_required(login_url= reverse('defense:login'))
 def activity(request):
     context ={"form":ActivityForm()}
     if request.method == 'GET':
@@ -58,8 +60,20 @@ def activity(request):
     else:
         for key, value in request.POST.items():
             if value == 'on':
-                logging.warn(key)
+                logging.warn(request.POST.get(key))
+        form = ActivityForm(request.POST)
+        form.save()
         return render(request, 'defense/activity.html', context)
 
+def add_participant(request):
+    # pdb.set_trace()
+    context = {'form':AddParticipantForm()}
+    
+    if request.method == 'GET':
+        return render(request, 'defense/add_participant.html', context)
+    else:
+        form = AddParticipantForm(request.POST)
+        form.save()
+        return render(request, 'defense/activity.html', {"form":ActivityForm()})
 
 # Create your views here.

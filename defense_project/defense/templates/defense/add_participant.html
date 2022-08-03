@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src = "{% static 'add_participant.js' %}"> </script>
+	<title>Document</title>
+</head>
+<body>
+	<form id="form" action="" method="post" novalidate >
+	<div>
+		{% csrf_token %}
+		<input type="number" name="id"> ID <BR>
+		<input type="text" name="name">Name<BR>
+		<input type="hidden" name="photo">Photo<BR>
+		<video id = "video" autoplay = "true"> </video>
+		<canvas id = "video_frame" width = 640 height = 480>
+	</div>
+	<button id = "get_image" onclick=capture_button_clicked() type="button"> Capture </button>
+	<button type="submit" name="submit">Submit</button>
+	</form>
+</body>
+</html>
+
+<!-- <html>
+<head>
+	<script src = "add_participant.js"> </script>
+		</head>
+
+
+<body>
+	<div>
+		<video id = "video" autoplay = "true"> </video>
+		<canvas id = "video_frame" width = 640 height = 480>
+	</div>
+
+	<button id = "get_image" onclick=capture_button_clicked()> Capture </button>
+</body>
+</html> -->

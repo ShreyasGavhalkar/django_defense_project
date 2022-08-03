@@ -6,7 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
 from django import forms
-
+from django.forms import ModelForm
+from .models import ActivityModels, AddParticipant
 
 # class UserCreation(UserCreationForm):
 #     username = forms.CharField(label="username")
@@ -35,11 +36,19 @@ from django import forms
 #         )
 #         return user
 
-class ActivityForm(forms.Form):
-    activity1 = forms.BooleanField()
-    activity2 = forms.BooleanField()
-    activity3 = forms.BooleanField()
-    activity4 = forms.BooleanField()  
+class ActivityForm(ModelForm):
+    # activity1 = forms.BooleanField()
+    # activity2 = forms.BooleanField()
+    # activity3 = forms.BooleanField()
+    # activity4 = forms.BooleanField() 
+    class Meta:
+        model = ActivityModels
+        fields = ['activity1', 'activity2', 'activity3', 'activity4']
 
-    
+
+class AddParticipantForm(ModelForm):
+    class Meta:
+        model = AddParticipant
+        fields = ['id', 'name', 'photo']
+        # exclude = ['photo']
 
