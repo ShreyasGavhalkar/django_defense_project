@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'defense/css/login.css' %}">
-</head>
-<body>
-    <h1>Log In</h1>
-    <form action="" method="post" novalidate class="formDiv">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="login">Log In</button>
-    </form>
-</body>
+    <link rel="stylesheet" href="{% static 'defense/css/login.css' %}" />
+  </head>
+  <body>
+    <div class="mainContainer">
+      <h1>Login</h1>
+      <p>Sign in to Continue</p>
+      <form action="" method="post" novalidate class="formDiv">
+        {% csrf_token %} {{ form.as_p }}
+        <div class="submitBtnDiv">
+          <button type="submit" name="login">Log In</button>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
