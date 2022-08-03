@@ -38,7 +38,7 @@ def auth(request, username, password):
 
 def register(request):  
     pdb.set_trace()
-    if request.POST == 'POST':
+    if request.method == 'POST':
           
         form = UserCreation()  
         if form.is_valid():  
