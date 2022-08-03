@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate 
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserCreation
-from django.contrib import messages  
+  
 import logging
 import pdb
 
