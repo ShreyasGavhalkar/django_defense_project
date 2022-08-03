@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate 
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserCreation
+from django.contrib import messages
+
+# from .forms import UserCreation
   
 import logging
 import pdb
@@ -37,19 +39,16 @@ def auth(request, username, password):
 #             return render(request, 'registration/register.html', context)
 
 def register(request):  
-    pdb.set_trace()
     if request.method == 'POST':
           
-        form = UserCreation()  
+        form = UserCreationForm(request.POST)  
         if form.is_valid():  
             form.save()  
-            messages.success(request, 'Account created successfully')  
+            messages.success(request, 'Account created successfully')
+
     else:  
-        form = UserCreation()  
-    context = {  
-        'form':form  
-    }  
-    return render(request, 'registration/register.html', context)  
+        form = UserCreationForm()  
+    return render(request, 'registration/register.html',{'form':form })  
 
 
 # Create your views here.
