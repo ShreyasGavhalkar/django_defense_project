@@ -6,6 +6,7 @@ from .forms import ActivityForm, AddParticipantForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from defense.models import AddParticipant
+from . import Image_Salute
 # from .forms import UserCreation
   
 import logging
@@ -55,16 +56,22 @@ def register(request):
 
 # @login_required(login_url= reverse('defense:login'))
 def activity(request):
+    form = ActivityForm()
+    pdb.set_trace()
     context ={"form":ActivityForm()}
     # pdb.set_trace()
     if request.method == 'GET':
         return render(request, 'defense/activity.html', context)
     else:
-        
+        # pdb.set_trace()
+        a= {}
         for key, value in request.POST.items():
-            if value == 'on':
-                logging.warn(key)
+            if key.startswith('csrf') or key == 'login':
+                # logging.warn(request.POST.get(key)[:10])
+                continue
+            a.update({key: value})
         form = ActivityForm(request.POST)
+        # form = ActivityForm(instance = a)
         form.save()
         return render(request, 'defense/activity.html', context)
 
@@ -76,10 +83,12 @@ def add_participant(request):
         context['items'] = items
         return render(request, 'defense/add_participant.html', context)
     else:
+        pdb.set_trace()
         context = {"form":ActivityForm()}
         form = AddParticipantForm(request.POST)
         form.save()
 
         return render(request, 'defense/activity.html', context)
+
 
 # Create your views here.

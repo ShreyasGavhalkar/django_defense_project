@@ -43,7 +43,7 @@ class ActivityForm(ModelForm):
     # activity4 = forms.BooleanField() 
     class Meta:
         model = ActivityModels
-        fields = ['activity1', 'activity2', 'activity3', 'activity4', 'id']
+        fields = ['activity1', 'activity2', 'activity3', 'activity4', 'id','photo']
 
 
 class AddParticipantForm(ModelForm):

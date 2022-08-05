@@ -13,7 +13,8 @@ class ActivityModels(models.Model):
     activity1 = models.BooleanField()
     activity2 = models.BooleanField()
     activity3 = models.BooleanField()
-    activity4 = models.BooleanField() 
+    activity4 = models.BooleanField()
+    photo = models.TextField()
 
 
 # Create your models here.
