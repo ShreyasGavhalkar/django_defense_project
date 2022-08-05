@@ -13,7 +13,7 @@
 	<form id="form" action="" method="post" novalidate >
 	<div>
 		{% csrf_token %}
-		<input type="number" name="id"> ID <BR>
+		<input type="number" name="personnel_id"> ID <BR>
 		<input type="text" name="name">Name<BR>
 		<input type="hidden" name="photo">Photo<BR>
 		<video id = "video" autoplay = "true"> </video>
@@ -22,6 +22,28 @@
 	<button id = "get_image" onclick=capture_button_clicked() type="button"> Capture </button>
 	<button type="submit" name="submit">Submit</button>
 	</form>
+	<div id = "items">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Photo</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+				<tr>
+					<td>{{item.personnel_id}}</td>
+					<td>{{item.name}}</td>
+					<td>
+						<img src="{{item.photo}}">
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
 

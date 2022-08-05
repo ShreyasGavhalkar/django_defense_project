@@ -43,12 +43,12 @@ class ActivityForm(ModelForm):
     # activity4 = forms.BooleanField() 
     class Meta:
         model = ActivityModels
-        fields = ['activity1', 'activity2', 'activity3', 'activity4']
+        fields = ['activity1', 'activity2', 'activity3', 'activity4', 'id']
 
 
 class AddParticipantForm(ModelForm):
     class Meta:
         model = AddParticipant
-        fields = ['id', 'name', 'photo']
+        fields = ['personnel_id', 'name', 'photo']
         # exclude = ['photo']
 

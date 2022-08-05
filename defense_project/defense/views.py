@@ -5,6 +5,7 @@ from django.contrib import messages
 from .forms import ActivityForm, AddParticipantForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from defense.models import AddParticipant
 # from .forms import UserCreation
   
 import logging
@@ -55,25 +56,30 @@ def register(request):
 # @login_required(login_url= reverse('defense:login'))
 def activity(request):
     context ={"form":ActivityForm()}
+    # pdb.set_trace()
     if request.method == 'GET':
         return render(request, 'defense/activity.html', context)
     else:
+        
         for key, value in request.POST.items():
             if value == 'on':
-                logging.warn(request.POST.get(key))
+                logging.warn(key)
         form = ActivityForm(request.POST)
         form.save()
         return render(request, 'defense/activity.html', context)
 
 def add_participant(request):
     # pdb.set_trace()
-    context = {'form':AddParticipantForm()}
-    
     if request.method == 'GET':
+        context = {'form':AddParticipantForm()}
+        items = AddParticipant.objects.all().order_by('-id')[:5]
+        context['items'] = items
         return render(request, 'defense/add_participant.html', context)
     else:
+        context = {"form":ActivityForm()}
         form = AddParticipantForm(request.POST)
         form.save()
-        return render(request, 'defense/activity.html', {"form":ActivityForm()})
+
+        return render(request, 'defense/activity.html', context)
 
 # Create your views here.
