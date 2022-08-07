@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+h1, p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+input {
+    outline: none;
+    padding: 5px;
+}
+
+.mainContainer {
+    width: 99vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 3rem;
+}
+
+.videoFormDiv form {
+    margin-top: 5rem;
+}
+
+.nameDiv {
+    margin-top: 1rem;
+}
+
+.cameraDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+.cameraDiv video, canvas {
+    width: 300px;
+    height: 225px;
+    border: 1px solid black;
+    margin: 0 1rem;
+}
+
+.cameraDiv canvas {
+    border: none;
+}
+
+.submitbtnDiv {
+    width: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.submitbtnDiv button {
+    border: none;
+    background-color: green;
+    padding: 5px 15px;
+    color: whitesmoke;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.verticalLine {
+    height: 80vh;
+    width: 8px;
+    background-color: black;
+}
+
