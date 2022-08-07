@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
-h1, p {
+h1,
+p {
     margin: 0;
     font-family: 'Roboto', sans-serif;
 }
@@ -34,7 +35,8 @@ input {
     margin-bottom: 2rem;
 }
 
-.cameraDiv video, canvas {
+.cameraDiv video,
+canvas {
     width: 300px;
     height: 225px;
     border: 1px solid black;
@@ -67,3 +69,7 @@ input {
     background-color: black;
 }
 
+.participantDiv img {
+    width: 300px;
+    height: 225px;
+}

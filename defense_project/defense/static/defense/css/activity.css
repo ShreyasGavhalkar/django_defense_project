@@ -1,8 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
+h1,
+p {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
 .mainContainer {
-    width: 99vw;
+    width: 98vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.formDiv h1 {
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.formDiv p {
+    display: inline-block;
+    margin-left: 2rem;
+}
+
+.formDiv input {
+    margin: 1rem 0;
+}
+
+.btnDiv {
+    margin-top: 2rem;
+}
+
+.btnDiv button {
+    margin: 0 1rem;
+    background-color: black;
+    padding: 5px 20px;
+    color: whitesmoke;
+}
+
+.videoDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.videoDiv video, canvas {
+    width: 400px;
+    height: 300px;
+    margin-bottom: 1rem;
+    border: 4px solid black;
 }

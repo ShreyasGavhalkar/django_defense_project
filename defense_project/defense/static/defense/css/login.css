@@ -32,4 +32,5 @@ h1, p {
     padding: 8px 60px;
     font-size: medium;
     font-family: 'Roboto', sans-serif;
+    cursor: pointer;
 }
