@@ -154,7 +154,7 @@ def main(image_data):
     if results.pose_landmarks:
         image2 = image.copy()
         draw_styled_pose_landmarks(image2, results)
-        cv2.imshow('Pose Landmarks', image2)
+        # cv2.imshow('Pose Landmarks', image2)
         #TODO 1: add visibility logic here
         image, angle, dist, flag = image_check(results, frame)
         print(f'Angle is {angle}')
@@ -177,7 +177,7 @@ def run(b64string):
     try:
         return main(npImg)
     except:
-        return ['Activity Failed']
+        return ['Activity Failed', 0]
 
 
 #Things to verify:

@@ -11,6 +11,7 @@ urlpatterns = [
     #     extra_context={ 
     #         'next': 'defense:auth', 
     #     },), name='login'),
+    path('', views.index, name = "index"),
     path('login/', views.auth, name='login'),
     path('auth/', views.auth, name = "auth"),
     path('register/', views.register,  name = 'register'),
