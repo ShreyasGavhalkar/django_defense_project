@@ -91,7 +91,8 @@ def generate_report(request, personnel_id):
     if not request.user.is_authenticated:
         return redirect("defense:login")
     Output = "at report gen page with id "+str(personnel_id)
-    return HttpResponse(Output)
+    return render(request, 'defense/final_report.html', )
 
 
 # Create your views here.
+
