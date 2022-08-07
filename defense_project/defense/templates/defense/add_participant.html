@@ -2,49 +2,73 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src = "{% static 'add_participant.js' %}"> </script>
+	<script src="{% static 'add_participant.js' %}"> </script>
 	<link rel="stylesheet" href="{% static 'defense/css/addParticipant.css' %}" />
 	<title>Document</title>
 </head>
+
 <body>
-	<form id="form" action="" method="post" novalidate >
-	<div>
-		{% csrf_token %}
-		<input type="number" name="personnel_id"> ID <BR>
-		<input type="text" name="name">Name<BR>
-		<input type="hidden" name="photo">Photo<BR>
-		<video id = "video" autoplay = "true"> </video>
-		<canvas id = "video_frame" width = 640 height = 480>
-	</div>
-	<button id = "get_image" onclick=capture_button_clicked() type="button"> Capture </button>
-	<button type="submit" name="submit">Submit</button>
-	</form>
-	<div id = "items">
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Photo</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in items %}
-				<tr>
-					<td>{{item.personnel_id}}</td>
-					<td>{{item.name}}</td>
-					<td>
-						<img src="{{item.photo}}">
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+	<div class="mainContainer">
+		<div class="videoFormDiv">
+			<h1>Add Participant</h1>
+			<form id="form" action="" method="post" novalidate>
+				<div>
+					{% csrf_token %}
+					<div class="idDiv">
+						<p>ID</p>
+						<input type="number" name="personnel_id" /> <BR>
+					</div>
+
+					<div class="nameDiv">
+						<p>NAME</p>
+						<input type="text" name="name" /><BR>
+					</div>
+
+					<BR>
+
+					<div class="cameraDiv">
+						<input type="hidden" name="photo">Photo<BR>
+						<video id="video" autoplay="true"> </video>
+						<canvas id="video_frame" width=640 height=480>
+					</div>
+				</div>
+
+				<div class="submitbtnDiv">
+					<button id="get_image" onclick=capture_button_clicked() type="button"> Capture </button>
+					<button type="submit" name="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+		<div class="verticalLine"></div>
+		<div class="participantDiv">
+			<h1>Participant</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Photo</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items %}
+					<tr>
+						<td>{{item.personnel_id}}</td>
+						<td>{{item.name}}</td>
+						<td>
+							<img src="{{item.photo}}">
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
-</html>
 
+</html>

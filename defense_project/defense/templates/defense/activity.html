@@ -2,29 +2,39 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{% static 'activity_capture.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'defense/css/activity.css' %}" />
     <title>Select Activity</title>
 </head>
+
 <body>
-    <h1>Add Activity</h1>
-    <form action="" method="post" novalidate id="form" >
-        {% csrf_token %}
-        <div>
-        <input type="number" name="id">ID<BR>
-        <input type="checkbox" name= "activity1">Activity 1<BR>
-        <input type="checkbox" name= "activity2">Activity 2<BR>
-        <input type="checkbox" name= "activity3">Activity 3<BR>
-        <input type="checkbox" name= "activity4">Activity 4<BR>
-        <input type="hidden" name="photo">Photo<BR>
-        <video id = "video" autoplay = "true"> </video>
-		<canvas id = "video_frame" width = 640 height = 480>
+    <div class="mainContainer">
+        <div class="formDiv">
+            <h1>Select Activity</h1>
+            <form action="" method="post" novalidate id="form">
+                {% csrf_token %}
+                <div>
+                    <input type="number" name="id">ID<BR>
+                    <input type="checkbox" name="activity1">Activity 1<BR>
+                    <input type="checkbox" name="activity2">Activity 2<BR>
+                    <input type="checkbox" name="activity3">Activity 3<BR>
+                    <input type="checkbox" name="activity4">Activity 4<BR>
+                    <input type="hidden" name="photo">Photo<BR>
+                    <video id="video" autoplay="true"> </video>
+                    <button type="submit" name="login">Submit</button>
+                    <button id="get_image" onclick=capture_button_clicked() type="button"> Capture </button>
+                </div>
+            </form>
         </div>
-        <button type="submit" name="login">Submit</button>
-        <button id = "get_image" onclick=capture_button_clicked() type="button"> Capture </button>
-    </form>
+        <div class="videoDiv">
+            <canvas id="video_frame" width=640 height=480>
+        </div>
+    </div>
 </body>
+
 </html>

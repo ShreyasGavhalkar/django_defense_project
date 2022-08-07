@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+h1, p {
+    font-family: 'Roboto', sans-serif;
+}
+
 .mainContainer {
     width: 100%;
     height: 100vh;
@@ -7,17 +13,23 @@
     flex-direction: column;
 }
 
-.submitBtnDiv {
-    width: 10vh;
+.mainContainer input {
+    outline: none;
+}
+
+.btnDiv {
+    margin-top: 2rem;
+    width: 28vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.submitBtnDiv button {
+.btnDiv button {
     border: none;
     background-color: black;
     color: white;
-    width: 60%;
-    padding: 5px;
+    padding: 8px 60px;
+    font-size: medium;
+    font-family: 'Roboto', sans-serif;
 }
