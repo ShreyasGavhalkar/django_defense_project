@@ -25,5 +25,5 @@ class ActivityReport(models.Model):
     activity2 = models.CharField(max_length=200, default="NP")
     activity3 = models.CharField(max_length=200, default="NP")
     activity4 = models.CharField(max_length=200, default="NP")
-    salute_angle = models.FloatField()
+    salute_angle = models.FloatField(default=0)
 # Create your models here.

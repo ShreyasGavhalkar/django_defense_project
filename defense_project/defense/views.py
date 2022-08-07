@@ -23,7 +23,6 @@ def auth(request):#, username, password):
     
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
-        pdb.set_trace()
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -35,7 +34,7 @@ def auth(request):#, username, password):
                 return messages.warning("User not found!")
 
         else:
-            return messages.warning(request, "Invalid Form!")
+            return redirect('defense:login')
     
     else:
         form = AuthenticationForm()
@@ -67,7 +66,6 @@ def activity(request):
     if request.method == 'GET':
         return render(request, 'defense/activity.html', context)
     else:
-        pdb.set_trace()
         form = ActivityForm(request.POST)
         # form = ActivityForm(instance = a)
         form.save()
@@ -95,9 +93,6 @@ def generate_report(request, personnel_id):
         return redirect("defense:login")
     details = ActivityModels.objects.get(pk=personnel_id)
     results = ActivityReport()
-    # print("*******************************\n")
-    # print(details.activity1)
-    # Output = "at report gen page with id "+str(personnel_id)
     photo = details.photo
     ref_participant = AddParticipant.objects.all().filter(personnel_id=personnel_id)
     # ref_participant_activiy = ActivityModels.objects.get(pk=personnel_id)
