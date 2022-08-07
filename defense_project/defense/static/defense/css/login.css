@@ -6,3 +6,18 @@
     justify-content: center;
     flex-direction: column;
 }
+
+.submitBtnDiv {
+    width: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submitBtnDiv button {
+    border: none;
+    background-color: black;
+    color: white;
+    width: 60%;
+    padding: 5px;
+}
