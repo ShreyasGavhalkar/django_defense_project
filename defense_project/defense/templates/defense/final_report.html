@@ -7,6 +7,30 @@
     <title>Report</title>
 </head>
 <body>
-    
-</body>
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Activity 1</th>
+                <th>Activity 2</th>
+                <th>Activity 3</th>
+                <th>Activity 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{id_id}}</td>
+                <td>{{name}}</td>
+                <td> <img src="{{photo_id}}"> </td>
+                <td>{{activity1}} <br> angle = {{salute_angle}}</td>
+                <td>{{activity2}}</td>
+                <td>{{activity3}}</td>
+                <td>{{activity4}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'defense:add_participant' %}">Add Participant</a>
 </html>
