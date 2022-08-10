@@ -15,60 +15,63 @@
 </head>
 
 <body>
-	<div class="mainContainer">
-		<div class="videoFormDiv">
-			<h1>Add Participant</h1>
-			<form id="form" action="" method="post" novalidate>
-				<div>
-					{% csrf_token %}
-					<div class="idDiv">
-						<p>ID</p>
-						<input type="number" name="personnel_id" /> <BR>
+	<div class="container-fluid mainContainer">
+		<div class="row">
+			<div class=" col videoFormDiv">
+				<h1>Add Participant</h1>
+				<form id="form" action="" method="post" novalidate>
+					<div>
+						{% csrf_token %}
+						<div class="idDiv">
+							<p>ID</p>
+							<input type="number" name="personnel_id" /> <BR>
+						</div>
+
+						<div class="nameDiv">
+							<p>NAME</p>
+							<input type="text" name="name" /><BR>
+						</div>
+
+						<BR>
+
+						<div class="cameraDiv">
+							<video id="video" autoplay="true"> </video>
+							<canvas id="video_frame" width=640 height=480>
+						</div>
 					</div>
 
-					<div class="nameDiv">
-						<p>NAME</p>
-						<input type="text" name="name" /><BR>
+					<div class="submitbtnDiv">
+						<button id="get_image" onclick=capture_button_clicked() type="button"> Capture </button>
+						<button type="submit" name="submit">Submit</button>
 					</div>
-
-					<BR>
-
-					<div class="cameraDiv">
-						<input type="hidden" name="photo">Photo<BR>
-						<video id="video" autoplay="true"> </video>
-						<canvas id="video_frame" width=640 height=480>
-					</div>
+				</form>
+			</div>
+			<!-- <div class="col verticalLine"></div> -->
+			<div class="col participantDiv">
+				<h1>Participant</h1>
+				<div class="scrollDiv">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Photo</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in items %}
+							<tr>
+								<td>{{item.personnel_id}}</td>
+								<td>{{item.name}}</td>
+								<td>
+									<img src="{{item.photo}}">
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
 				</div>
-
-				<div class="submitbtnDiv">
-					<button id="get_image" onclick=capture_button_clicked() type="button"> Capture </button>
-					<button type="submit" name="submit">Submit</button>
-				</div>
-			</form>
-		</div>
-		<div class="verticalLine"></div>
-		<div class="participantDiv">
-			<h1>Participant</h1>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Photo</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for item in items %}
-					<tr>
-						<td>{{item.personnel_id}}</td>
-						<td>{{item.name}}</td>
-						<td>
-							<img src="{{item.photo}}">
-						</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+			</div>
 		</div>
 	</div>
 

@@ -11,12 +11,18 @@ input {
     padding: 5px;
 }
 
+table {
+    border-spacing: 0 1rem;
+    border: 1px solid black;
+}
+
 .mainContainer {
-    width: 99vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding-top: 3rem;
+    padding-top: 5rem;
+}
+
+.videoFormDiv{
+    border-right: 4px solid black;
+    padding: 0 2rem !important;
 }
 
 .videoFormDiv form {
@@ -48,7 +54,7 @@ canvas {
 }
 
 .submitbtnDiv {
-    width: 50vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -65,15 +71,25 @@ canvas {
 
 .verticalLine {
     height: 80vh;
-    width: 8px;
+    width: 2px;
     background-color: black;
 }
 
-.participantDiv img {
-    width: 120px;
-    height: 100px;
+.participantDiv {
+    justify-self: flex-start;
+    margin-left: 3rem;
 }
 
-.participantDiv td {
-    margin-left: 2rem;
+.scrollDiv {
+    overflow-y: scroll;
+    height: 73vh;
+}
+
+.participantDiv h1{
+    margin-bottom: 2rem;
+}
+
+.participantDiv img{
+    width: 120px;
+    height: 100px;
 }
