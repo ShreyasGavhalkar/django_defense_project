@@ -144,7 +144,6 @@ def image_check(results, image2):
 #================================== Execution ==================================
 
 def main(image_data):
-    #pdb.set_trace()
     frame = cv2.cvtColor(image_data, cv2.COLOR_RGB2BGR)
     print(frame)
 
@@ -160,6 +159,7 @@ def main(image_data):
         print(f'Angle is {angle}')
         if flag and dist:
             return ['Activity Passed', angle]
+        return ['Activity Failed', 0]
     
     # cv2.imshow('image', image)
     # cv2.waitKey(0)
