@@ -2,6 +2,7 @@
 
 h1, p {
     font-family: 'Roboto', sans-serif;
+    
 }
 
 .mainContainer {
@@ -10,16 +11,35 @@ h1, p {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
-.mainContainer input {
+.formContainerDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 15vw;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.formContainerDiv h1{
+    margin: 0%;
+    font-size: 4rem;
+}
+
+.desc {
+    font-size: 1.5rem;
+}
+
+.formDiv input {
     outline: none;
 }
 
 .btnDiv {
     margin-top: 2rem;
-    width: 28vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
