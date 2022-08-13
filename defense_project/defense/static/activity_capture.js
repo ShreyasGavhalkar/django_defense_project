@@ -23,11 +23,7 @@ function capture_button_clicked(){
 	ctx = canvas.getContext('2d');
 	ctx.drawImage(video,0,0)
 	const img = canvas.toDataURL('image/png')
-  // var form = document.getElementById("form")
-  // form.photo.value = img
-	// console.log(form.id.value)
-  // console.log(form.photo.value)
-  document.getElementById('form')
+  var form = document.getElementById('form')
   form.photo.value = img
   console.log(form.photo.value)
   console.log(document.getElementById('form'))

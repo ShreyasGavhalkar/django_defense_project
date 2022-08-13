@@ -81,7 +81,6 @@ def add_participant(request):
         context['items'] = items
         return render(request, 'defense/add_participant.html', context)
     else:
-        # pdb.set_trace()
         context = {"form":ActivityForm()}
         form = AddParticipantForm(request.POST)
         form.save()

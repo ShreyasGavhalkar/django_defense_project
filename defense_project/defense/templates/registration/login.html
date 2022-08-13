@@ -15,7 +15,7 @@
     <div class="formContainerDiv">
       <h1>Login</h1>
       <p class="desc">Sign in to Continue</p>
-      <form action="{% url 'defense:login' %}" method="post" novalidate class="formDiv">
+      <form action="{% url 'defense:login' %}" method="post" novalidate class="formDiv" id="form">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="btnDiv">
