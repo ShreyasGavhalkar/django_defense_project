@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-
+from defense import views
 urlpatterns = [
+    path("", views.auth),
     path('admin/', admin.site.urls),
     # path('login/', include("django.contrib.auth.urls"), name='login'),
     path('defense/', include('defense.urls')),
