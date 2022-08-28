@@ -20,6 +20,7 @@ def index(request):
     return redirect("defense:login")
 
 def auth(request):#, username, password):
+   # pdb.set_trace()
     
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
