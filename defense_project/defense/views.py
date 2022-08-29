@@ -61,16 +61,18 @@ def activity(request):
     if not request.user.is_authenticated:
         return redirect("defense:login")
     form = ActivityForm()
-    
-    context ={"form":ActivityForm()}
     # pdb.set_trace()
     if request.method == 'GET':
+        context ={"form":form}
         return render(request, 'defense/activity.html', context)
     else:
         form = ActivityForm(request.POST)
+        context ={"form":form}
         # form = ActivityForm(instance = a)
-        form.save()
-        return redirect("defense:generate_report", personnel_id = request.POST.get('id'))
+        if form.is_valid():
+            form.save()
+            return redirect("defense:generate_report", personnel_id = request.POST.get('id'))
+        return render(request, 'defense/activity.html', context)
 
 def add_participant(request):
     # pdb.set_trace()
@@ -93,16 +95,15 @@ def generate_report(request, personnel_id):
         return redirect("defense:login")
     details = ActivityModels.objects.get(pk=personnel_id)
     results = ActivityReport()
-    photo = details.photo
-    ref_participant = AddParticipant.objects.all().filter(personnel_id=personnel_id)
+    ref_participant = AddParticipant.objects.filter(personnel_id=personnel_id).first()
     # ref_participant_activiy = ActivityModels.objects.get(pk=personnel_id)
-    results.photo = details
-    results.id = ref_participant[0]
-    results.name = ref_participant[0].name
+    results.photo = details.photo
+    results.id = ref_participant
+    results.name = ref_participant.name
     print(ref_participant)
     # results.id = AddParticipant.objects.get(pk=personnel_id)
     if(details.activity1):
-        photo = photo.split(',')[1]
+        photo = details.photo.split(',')[1]
         activity1_results = Image_Salute.run(photo)
         results.activity1 = activity1_results[0]
         results.salute_angle = activity1_results[1]
