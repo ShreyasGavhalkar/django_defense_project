@@ -77,12 +77,18 @@ WSGI_APPLICATION = 'defense_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres', 
+        'USER': 'postgres', 
+        'PASSWORD': 'Pass@1233',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
+        'OPTIONS': {
+            
+
+        },
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
