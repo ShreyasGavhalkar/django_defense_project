@@ -78,15 +78,11 @@ WSGI_APPLICATION = 'defense_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres', 
-        'USER': 'postgres', 
-        'PASSWORD': 'Pass@1233',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
-        'OPTIONS': {
-            
-
-        },
+        'NAME': "test",
+        "USER": "postgres",
+        "PASSWORD": "AcessPassword",
+        "HOST": "localhost",
+        "PORT":"5432",
     }
 }
 # Password validation

@@ -10,16 +10,16 @@ class AddParticipant(models.Model):
 
 
 class ActivityModels(models.Model):
-    id = models.ForeignKey(AddParticipant, to_field = "personnel_id", db_column="participant_id" ,primary_key=True, on_delete=models.CASCADE)
+    id = models.OneToOneField(AddParticipant, to_field = "personnel_id", db_column="participant_id" ,primary_key=True, on_delete=models.CASCADE)
     activity1 = models.BooleanField()
     activity2 = models.BooleanField()
     activity3 = models.BooleanField()
     activity4 = models.BooleanField()
-    photo = models.TextField(unique=True)
+    photo = models.TextField(max_length=10000000)
 
 class ActivityReport(models.Model):
-    id = models.ForeignKey(AddParticipant, to_field = "personnel_id", db_column="participant_id" ,primary_key=True, on_delete=models.CASCADE)
-    photo = models.ForeignKey(ActivityModels, to_field = "photo", db_column="photo", on_delete=models.CASCADE )
+    id = models.OneToOneField(AddParticipant , to_field="personnel_id", primary_key=True, on_delete=models.CASCADE)
+    photo = models.TextField()
     name = models.CharField(max_length=200)
     activity1 = models.CharField(max_length=200, default="NP")
     activity2 = models.CharField(max_length=200, default="NP")

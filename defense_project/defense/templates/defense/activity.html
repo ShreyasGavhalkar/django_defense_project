@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col formDiv">
                 <h1>Select Activity</h1>
+                {{form.errors}}
                 <form action="" method="post" novalidate id="form">
                     {% csrf_token %}
                     <div>

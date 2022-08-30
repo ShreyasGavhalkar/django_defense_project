@@ -41,10 +41,14 @@ class ActivityForm(ModelForm):
     # activity2 = forms.BooleanField()
     # activity3 = forms.BooleanField()
     # activity4 = forms.BooleanField() 
+    photo = forms.CharField(max_length=10000000)
     class Meta:
         model = ActivityModels
-        fields = ['activity1', 'activity2', 'activity3', 'activity4', 'id','photo']
+        fields = ['activity1', 'activity2', 'activity3', 'activity4', 'id']
 
+    def save(self, *args, **kwargs):
+        self.instance.photo = self.cleaned_data['photo']
+        super().save(*args, **kwargs)
 
 class AddParticipantForm(ModelForm):
     class Meta:

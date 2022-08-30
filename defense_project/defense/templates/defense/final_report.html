@@ -30,7 +30,7 @@
                 <tr>
                     <td class="tableData">{{id_id}}</td>
                     <td class="tableData">{{name}}</td>
-                    <td class="tableData"> <img src="{{photo_id}}"> </td>
+                    <td class="tableData"> <img src="{{photo}}"> </td>
                     <td class="tableData">{{activity1}} <br> angle = {{salute_angle}}</td>
                     <td class="tableData">{{activity2}}</td>
                     <td class="tableData">{{activity3}}</td>
@@ -42,6 +42,12 @@
                 <a href="{% url 'defense:add_participant' %}">Add Participant</a>
             </button>
         </div>
+        <div class="row">
+			<div class="col descCont">
+				This is a section where we can see the final report of all the participant.
+			</div>
+			<div class="col"></div>
+		</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

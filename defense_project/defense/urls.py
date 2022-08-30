@@ -19,5 +19,4 @@ urlpatterns = [
     path('add-participant/', views.add_participant, name = 'add_participant'),
     path('report/<int:personnel_id>', views.generate_report, name = "generate_report"),
     # path("login/", views.auth, name = 'login'),
-
 ]
