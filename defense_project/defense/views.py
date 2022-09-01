@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http.response import StreamingHttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate 
 from django.contrib.auth.forms import UserCreationForm
@@ -9,7 +9,9 @@ from defense.models import AddParticipant
 from django.contrib.auth.forms import AuthenticationForm, authenticate
 from django.contrib.auth import login
 from . import Image_Salute
+from .camera import VideoCamera
 from defense.models import ActivityModels, ActivityReport, AddParticipant
+from time import time
 # from .forms import UserCreation
   
 import logging
@@ -71,7 +73,7 @@ def activity(request):
         # form = ActivityForm(instance = a)
         if form.is_valid():
             form.save()
-            return redirect("defense:generate_report", personnel_id = request.POST.get('id'))
+            return redirect("defense:image_render", personnel_id = request.POST.get('id'))
         return render(request, 'defense/activity.html', context)
 
 def add_participant(request):
@@ -112,6 +114,24 @@ def generate_report(request, personnel_id):
     results.save()
     return render(request, 'defense/final_report.html',context )
 
+
+def gen(camera):
+    while True:
+        img = camera.get_frame()
+        yield (b'--frame\r\n'
+				b'Content-Type: image/jpeg\r\n\r\n' + img + b'\r\n\r\n')
+
+def image_render(request, personnel_id):
+    if request.method == "GET":
+        return render(request, 'defense/image_render.html')
+    else:
+        return redirect("defense:add_participant")
+
+def video_capture(request):
+    camera = VideoCamera()
+    camera.start = time()
+    return StreamingHttpResponse(gen(camera), content_type='multipart/x-mixed-replace; boundary=frame')
+            
 
 # Create your views here.
 

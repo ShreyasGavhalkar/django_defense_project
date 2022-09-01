@@ -1,15 +1,11 @@
-from imutils.video import VideoStream
-import imutils
+import os
 import cv2
-import os,urllib.request
 import numpy as np
-from django.conf import settings
-from datetime import datetime
-
 import math
 import mediapipe as mp
 from time import time
-
+import os
+from datetime import datetime
 
 
 # Build Keypoints using MP Holistic
@@ -165,45 +161,69 @@ def image_check(results, image2):
 
     return image2, angle,salute_flag
 
-class VideoCamera(object):
-	def __init__(self):
-		self.start = None
-		self.video = cv2.VideoCapture(0)
-		self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 1100)
-		self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 1100)
-		self.frame_width = 1280
-		self.frame_height = 720
-		today=datetime.now().strftime("%Y_%m_%d-%I_%H_%M_%S")
-		self.iwriter = cv2.VideoWriter(f'ProcessedVideo_{today}.avi',cv2.VideoWriter_fourcc(*'MJPG'),10, (self.frame_width, self.frame_height)) #writes for default starting 5 sec
-		self.swriter = cv2.VideoWriter(f'ProcessedVideo_salute_{today}.avi', cv2.VideoWriter_fourcc(*'MJPG'), 10, (self.frame_width, self.frame_height)) #writer for when correct salute is detected
-		self.correct = False
-		self.last_flag = False
-	
-	def __del__(self):
-		self.video.release()
-		self.iwriter.release()
-		self.swriter.release()
+def main():
 
-	def get_frame(self):
-		ok, image = self.video.read()
-		end=time()
-		if not ok:
-			print('Cannot read camera feed')
-		frame = cv2.blur(image, (3, 3))
-		results, frame = run_mediapipe_holistic(frame)
-		image2,angle,salute_flag = image_check(results, frame)
+    cp = cv2.VideoCapture(0)
+    cp.set(cv2.CAP_PROP_FRAME_WIDTH, 1100)
+    cp.set(cv2.CAP_PROP_FRAME_HEIGHT, 1100)
+    frame_width = int(cp.get(3))
+    frame_height = int(cp.get(4))
+    correct=0       #Flag for if correct salute was detected in the video atleast once.
+    last_flag = False  #Flag to check if the coreect salute detected was the first instance.
+    today=datetime.now().strftime("%Y_%m_%d-%I_%H_%M_%S")
+    iwriter = cv2.VideoWriter(f'ProcessedVideo_{today}.avi',cv2.VideoWriter_fourcc(*'MJPG'),10, (frame_width, frame_height)) #writes for default starting 5 sec
+    swriter = cv2.VideoWriter(f'ProcessedVideo_salute_{today}.avi', cv2.VideoWriter_fourcc(*'MJPG'), 10, (frame_width, frame_height)) #writer for when correct salute is detected
 
-		if end-self.start<=20 and not self.correct:
-			self.iwriter.write(image2)
-		
-		if salute_flag and not self.correct:
-			self.correct=1
-			self.last_flag=True
-			start_angle = time()
 
-		if self.last_flag :
-			if time() - start_angle <= 20:
-				self.swriter.write(image2)
-		frame_flip = cv2.flip(image,1)
-		ret, jpeg = cv2.imencode('.jpg', frame_flip)
-		return jpeg.tobytes()
+    start = time()
+
+
+    while True:
+        frame_counter = 0
+        ok, frame = cp.read()
+        # frame = cv2.resize (frame, (1220, 680))
+        end=time()
+        # frame = cv2.flip(frame, 1)
+        if not ok:
+            print('Video Over or not accessible')
+            break
+        # if frame_counter % 3 == 0:
+        #Allowing only every 3rd frame to be processed
+        frame = cv2.blur(frame, (3, 3))
+        results, frame = run_mediapipe_holistic(frame)
+        image2,angle,salute_flag = image_check(results, frame)
+        # cv2.setWindowProperty("frame", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+        cv2.imshow('frame', image2)
+
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+
+        if end-start<=20 and not correct:
+            iwriter.write(image2)
+        # print(f'salute flag is {salute_flag}')
+
+
+        if salute_flag and not correct:
+                correct=1
+                last_flag=True
+                start_angle = time()
+
+
+        if last_flag :
+            if time() - start_angle <= 20:
+                swriter.write(image2)
+                # print(f'fame written to swriter at time of {time() - start_angle}')
+            
+            # frame_counter += 1
+
+    cp.release()
+    cv2.destroyAllWindows()
+    iwriter.release()
+    swriter.release()
+    if correct==1:
+        os.remove(f'ProcessedVideo_{today}.avi')
+    elif correct==0:
+        os.remove(f'ProcessedVideo_salute_{today}.avi')
+
+main()

@@ -6,11 +6,6 @@ from django.contrib.auth import views as auth_views
 
 app_name = 'defense'
 urlpatterns = [
-    # path('login/', auth_views.LoginView.as_view(
-    #     template_name='registration/login.html',  
-    #     extra_context={ 
-    #         'next': 'defense:auth', 
-    #     },), name='login'),
     path('', views.index, name = "index"),
     path('login/', views.auth, name='login'),
     path('auth/', views.auth, name = "auth"),
@@ -18,5 +13,7 @@ urlpatterns = [
     path('activity/', views.activity, name = 'activity'),
     path('add-participant/', views.add_participant, name = 'add_participant'),
     path('report/<int:personnel_id>', views.generate_report, name = "generate_report"),
+    path('image_render/<int:personnel_id>', views.image_render, name="image_render"),
+    path('video_capture', views.video_capture, name = "video_capture"),
     # path("login/", views.auth, name = 'login'),
 ]
